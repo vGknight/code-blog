@@ -33,6 +33,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 <!-- start-smoth-scrolling -->
+<!--Adding emoticons library -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/css/emoji.css" rel="stylesheet">
 </head>
 	
 <body>
@@ -51,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						  </button>
-						   <a class="navbar-brand" href="index.html"><span>Q</span>uickly</a>
+						   <a class="navbar-brand" href="index.html"><span>Code & </span>Blog</a>
 						</div>
 
 						<!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,8 +62,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 <ul class="nav navbar-nav">
 							<li class="hvr-bounce-to-bottom active"><a href="index.html">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="about.html">About</a></li>
-							
-							<li class="hvr-bounce-to-bottom"><a href="Pages.html">Pages</a></li>
+							<!-- <div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>-->
+							<li class="hvr-bounce-to-bottom dropdown"><a href="Pages.html">Blogs</a>
+								<div class="dropdown-content">
+							    <a href="#">Arushi</a>
+							    <a href="#">Jessica</a>
+							    <a href="#">Greg</a>
+							  </div>
+							</li>
 							<li class="hvr-bounce-to-bottom"><a href="contact.html">Contact Us</a></li>
 						  </ul>
 						  <div class="sign-in">
@@ -69,6 +85,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="register.html">Register</a></li>
 							</ul>
 							</div>
+							<div class="sign-in2">
+							<ul>
+								<li><a href="#" id="createBlog">Write a Blog </a></li>
+							</ul>
+							</div>
+
+<!---MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="exampleModalLabel">Write A New Blog</h5>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <div class="modal-body">
+									        <form>
+									          <div class="form-group">
+									            <label for="recipient-name" class="form-control-label">Blog Title:</label>
+									            <input type="text" class="form-control" id="recipient-name" >
+									          </div>
+									          <div class="form-group">
+									            <label for="message-text" class="form-control-label">Post:</label>
+									            <textarea class="form-control" id="message-text"></textarea>
+									          </div>
+									        </form>
+									      </div>
+									      <div class="form-group">
+									      		<label for="message-text" class="form-control-label" id="spacing">   Upload an Image:</label>
+									      </div>
+									      <div class="container" >
+										      <div class= "container">
+										      		<form id="frmUploader" enctype="multipart/form-data" action="api/Upload/" method="post">
+											        <input type="file" name="imgUploader" multiple />
+											        <input type="submit" name="submit" class="btn btn-primary" id="btnSubmit" value="Upload" /> </form>
+										      </div>
+									      </div>
+									      <br>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									        <button type="button" class="btn btn-primary">Upload!</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+
+<!---MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+							<!-- JQuery for Modal-->
+							<script>
+								$('#createBlog').on('click', function (e) {
+  									$('#myModal').modal('show');
+								})
+
+							</script>
 						</div><!-- /.navbar-collapse -->
 					</nav>
 				</div>
@@ -86,10 +158,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="header-bottom">
 		<div class="header-bottom-top">
 			<ul>
-				<li><a href="#" class="g"> </a></li>
-				<li><a href="#" class="p"> </a></li>
-				<li><a href="#" class="facebook"> </a></li>
-				<li><a href="#" class="twitter"> </a></li>
+				<li><!-- <a href="#" class="g">  --><!-- </a> --></li>
+				<li><!-- <a href="#" class="p"> </a> --></li>
+				<li><!-- <a href="#" class="facebook"> </a> --></li>
+				<li><!-- <a href="#" class="twitter"> </a> --></li>
 			</ul>
 		</div>
 		<div class="clearfix"> </div>
@@ -536,5 +608,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- for bootstrap working -->
 		<script src="js/bootstrap.js"> </script>
 <!-- //for bootstrap working -->
+		  <!-- ** Emoji packages ** -->
+		  <script src="lib/js/config.js"></script>
+		  <script src="lib/js/util.js"></script>
+		  <script src="lib/js/jquery.emojiarea.js"></script>
+		  <script src="lib/js/emoji-picker.js"></script>
 </body>
 </html>
