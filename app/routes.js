@@ -49,9 +49,6 @@ module.exports = function(app, passport) {
                 post: data,
                 authors: users
             };
-
-
-            // res.render('index.handlebars', hbsObject); // load the index.handlebars file
             res.render('index.handlebars', hbsObject); // load the index.handlebars file
 
         });
@@ -67,7 +64,6 @@ module.exports = function(app, passport) {
         // let mailer.smtp = req.body.body;
 
         console.log(mailOptions);
-        // console.log(req.body);
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
@@ -109,8 +105,6 @@ module.exports = function(app, passport) {
 
         // render the page and pass in any flash data if it exists
         res.render('login.handlebars', { message: req.flash('loginMessage') });
-        // res.render('login.html', { message: req.flash('loginMessage') });
-        // res.sendFile(path.join(__dirname, "login.html"), { message: req.flash('loginMessage') } );
 
     });
 
@@ -134,15 +128,6 @@ module.exports = function(app, passport) {
     // =====================================
     // LOGIN ===============================
     // =====================================
-    // show the login form
-    // app.get('/login2', function(req, res) {
-
-    //     // render the page and pass in any flash data if it exists
-    //     res.render('login2.handlebars', { message: req.flash('loginMessage') });
-    //     // res.render('login.html', { message: req.flash('loginMessage') });
-    //     // res.sendFile(path.join(__dirname, "login.html"), { message: req.flash('loginMessage') } );
-
-    // });
 
 
     // about page
@@ -162,10 +147,7 @@ module.exports = function(app, passport) {
             res.render('contact.handlebars', hbsObject);
         });
 
-        // render the page and pass in any flash data if it exists
-        // res.render('contact.handlebars', { message: req.flash('loginMessage') });
-        // res.render('login.html', { message: req.flash('loginMessage') });
-        // res.sendFile(path.join(__dirname, "login.html"), { message: req.flash('loginMessage') } );
+
 
     });
 
@@ -186,28 +168,7 @@ module.exports = function(app, passport) {
 
 
 
-        // render the page and pass in any flash data if it exists
-        // res.render('about.handlebars', { message: req.flash('loginMessage') });
-        // res.render('login.html', { message: req.flash('loginMessage') });
-        // res.sendFile(path.join(__dirname, "login.html"), { message: req.flash('loginMessage') } );
-
     });
-    // process the login form
-    // app.post('/login2', passport.authenticate('local-login', {
-    //         successRedirect: '/profile', // redirect to the secure profile section
-    //         failureRedirect: '/login2', // redirect back to the signup page if there is an error
-    //         failureFlash: true // allow flash messages
-    //     }),
-    //     function(req, res) {
-    //         console.log("hello");
-
-    //         if (req.body.remember) {
-    //             req.session.cookie.maxAge = 1000 * 60 * 3;
-    //         } else {
-    //             req.session.cookie.expires = false;
-    //         }
-    //         res.redirect('/');
-    //     });
 
 
     // =====================================
@@ -219,10 +180,7 @@ module.exports = function(app, passport) {
         res.render('signup.handlebars', { message: req.flash('signupMessage') });
     });
 
-    // app.get('/signup2', function(req, res) {
-    //     // render the page and pass in any flash data if it exists
-    //     res.render('signup2.handlebars', { message: req.flash('signupMessage') });
-    // });
+
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
@@ -231,11 +189,6 @@ module.exports = function(app, passport) {
         failureFlash: true // allow flash messages
     }));
 
-    // app.post('/signup2', passport.authenticate('local-signup', {
-    //     successRedirect: '/profile', // redirect to the secure profile section
-    //     failureRedirect: '/signup2', // redirect back to the signup page if there is an error
-    //     failureFlash: true // allow flash messages
-    // }));
 
 
     // =====================================
@@ -329,14 +282,14 @@ module.exports = function(app, passport) {
 
 
         postModel.getOneBlogJoin(id, function(data) {
-            // postModel.getOneBlog(id, function(data) {
+
 
             var hbsObject = {
                 blog: data,
                 user: req.user
-                // authorized: // user: req.user
+
             };
-            // console.log(hbsObject);
+
             console.log(req.params.id + " req.user.id )))")
 
             res.render("single.handlebars", hbsObject);
@@ -354,9 +307,6 @@ module.exports = function(app, passport) {
 
 
         postModel.getOneBlogJoin(id, function(data) {
-            // postModel.getOneBlog(id, function(data) {
-
-
 
             //look into route validator 
 

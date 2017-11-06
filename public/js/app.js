@@ -45,11 +45,13 @@ $(function() {
             name: $("#name").val().trim(),
             github: $("#github").val().trim(),
             email: $("#email").val().trim(),
+            comments: $("#comments").val().trim(),
             createTime: moment().format("YYYY-MM-DD hh:mm:ss")
 
         };
 
         console.log(newContactReq);
+         $('#confirm-modal').modal('show');
 
         // Send the POST request.
         $.ajax("/api/send-contact-email", {
@@ -59,7 +61,7 @@ $(function() {
             function() {
                 console.log("Contact form sent...");
                 // Reload the page to get the updated list - this sucks
-                location.reload();
+                // location.reload();
 
 
             }
@@ -69,6 +71,10 @@ $(function() {
     $('#createBlog').on('click', function(e) {
         $('#myModal').modal('show');
     })
+
+    //    $('#createBlog').on('click', function(e) {
+    //     $('#myModal').modal('show');
+    // })
 
 
     $("#comment-button").on("click", function(event) {
