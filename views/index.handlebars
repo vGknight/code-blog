@@ -1,0 +1,13 @@
+<div class="jumbotron text-center">
+    <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+    <p>Login or Register with:</p>
+    <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+    <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+    <a href="/auth/github" class="btn btn-primary"><span class="fa fa-github"></span> github</a>
+</div>
+{{#each post}}
+<div class="blog-post">
+    <h2 class="blog-post-title">{{this.title}}</h2>
+    <p class="blog-post-meta">December 23, 2013 by <a href="#">{{this.user.username}}</a></p>
+    {{this.content}} {{/each}}
+</div>
