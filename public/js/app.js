@@ -53,6 +53,8 @@ $(function() {
         console.log(newContactReq);
          $('#confirm-modal').modal('show');
 
+         // $("#contact-form").trigger("reset");
+
         // Send the POST request.
         $.ajax("/api/send-contact-email", {
             type: "POST",
@@ -70,6 +72,10 @@ $(function() {
 
     $('#createBlog').on('click', function(e) {
         $('#myModal').modal('show');
+    })
+
+     $('#contact-confirm').on('click', function(e) {
+        location.reload();
     })
 
     //    $('#createBlog').on('click', function(e) {
