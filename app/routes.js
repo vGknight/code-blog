@@ -376,19 +376,6 @@ module.exports = function(app, passport) {
             }
 
 
-            // if (data) {
-
-            //     res.render("singleGuest.handlebars", hbsObject);
-            // } else {
-            //     console.log("SHits missing");
-            //     res.render("/");
-            // }
-
-
-
-            // console.log(req.params.id + " req.user.id )))")
-
-
 
 
         });
@@ -403,68 +390,68 @@ module.exports = function(app, passport) {
 
     //github stuff
 
-    app.get('/auth/github', passport.authenticate('github', { scope: ['user:username'] }));
+    // app.get('/auth/github', passport.authenticate('github', { scope: ['user:username'] }));
 
     // app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-    app.get('/auth/github/callback',
-        passport.authenticate('github', { failureRedirect: '/login' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/profile');
-        });
+    // app.get('/auth/github/callback',
+    //     passport.authenticate('github', { failureRedirect: '/login' }),
+    //     function(req, res) {
+    //         // Successful authentication, redirect home.
+    //         res.redirect('/profile');
+    //     });
 
 
     // async testing  DOING THIS TO TRY AND LOAD COMMENTS ON BLOG PAGE FOR HANDLEBARS
 
-    app.get('/api/test/view/:id', function(req, res) {
+    // app.get('/api/test/view/:id', function(req, res) {
 
-        var id = req.params.id;
-
-
-        async.parallel([
-            // getBlogPost: 
-            function(callback) {
-                postModel.getOneBlog(id, function(data) {
-
-                    var hbsObject = {
-                        blog: data,
-                        user: req.user
-                        // authorized: // user: req.user
-                    };
-
-                    return callback;
-
-                });
+    //     var id = req.params.id;
 
 
-            },
-            // getBlogComments: 
-            function(callback) {
+    //     async.parallel([
+    //         // getBlogPost: 
+    //         function(callback) {
+    //             postModel.getOneBlog(id, function(data) {
 
-                commentsModel.getComments(id, function(data) {
+    //                 var hbsObject = {
+    //                     blog: data,
+    //                     user: req.user
+    //                     // authorized: // user: req.user
+    //                 };
 
-                    console.log(id + " ---------------------Should be postId--");
+    //                 return callback;
 
-                    // var hbsObject = {
-                    //     blog: data,
-                    //     user: req.user
+    //             });
 
-                    // };
 
-                });
+    //         },
+    //         // getBlogComments: 
+    //         function(callback) {
 
-            }
-        ], function(err, results) {
-            if (err)
-                return res.send(500);
-            // results === { universityData: { ... }, courseData: { ... } }
-            // res.render('course', results);
+    //             commentsModel.getComments(id, function(data) {
 
-            console.log(results[0] + "============================================================");
-            res.render("single2.handlebars", results);
-        });
-    });
+    //                 console.log(id + " ---------------------Should be postId--");
+
+    //                 // var hbsObject = {
+    //                 //     blog: data,
+    //                 //     user: req.user
+
+    //                 // };
+
+    //             });
+
+    //         }
+    //     ], function(err, results) {
+    //         if (err)
+    //             return res.send(500);
+    //         // results === { universityData: { ... }, courseData: { ... } }
+    //         // res.render('course', results);
+
+    //         console.log(results[0] + "============================================================");
+    //         res.render("single2.handlebars", results);
+    //     });
+    // });
 
     // app.get('/api/test/view/:id', function(req, res) {
 
