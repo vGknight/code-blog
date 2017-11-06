@@ -52,7 +52,7 @@ module.exports = function(app, passport) {
 
 
             // res.render('index.handlebars', hbsObject); // load the index.handlebars file
-            res.render('index2.handlebars', hbsObject); // load the index.handlebars file
+            res.render('index.handlebars', hbsObject); // load the index.handlebars file
 
         });
     });
@@ -219,10 +219,10 @@ module.exports = function(app, passport) {
         res.render('signup.handlebars', { message: req.flash('signupMessage') });
     });
 
-    app.get('/signup2', function(req, res) {
-        // render the page and pass in any flash data if it exists
-        res.render('signup2.handlebars', { message: req.flash('signupMessage') });
-    });
+    // app.get('/signup2', function(req, res) {
+    //     // render the page and pass in any flash data if it exists
+    //     res.render('signup2.handlebars', { message: req.flash('signupMessage') });
+    // });
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
