@@ -198,7 +198,8 @@ module.exports = function(app, passport) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
 
-        postModel.getMyBlogs(req.user.id, function(data) {
+        // postModel.getMyBlogs(req.user.id, function(data) {
+        postModel.getMyBlogsJoin(req.user.id, function(data) {
 
             var hbsObject = {
                 post: data,
@@ -250,6 +251,24 @@ module.exports = function(app, passport) {
 
     });
 
+    //get this working
+
+      //need to call this from ajax and not link on html
+         app.get('/api/post/delete/:id', isLoggedIn, function(req, res) {
+
+
+        var postId = req.params.id;
+        var authorId = req.user.id;
+
+
+        postModel.deleteOne(postId, authorId, function() {
+
+
+            res.redirect('/profile');
+        });
+
+    });
+
     //add comment
     // app.post('/api/post/:id', isLoggedIn, function(req, res) {
     app.post('/api/comment/', function(req, res) {
@@ -278,7 +297,8 @@ module.exports = function(app, passport) {
         // app.get('/view/:id', function(req, res) {
 
         var id = req.params.id;
-        console.log(req.params.id + " req.user.id )))")
+        console.log(req.params.id + " req.params.id )))")
+        console.log(req.user.id + " req.user )))")
 
 
         postModel.getOneBlogJoin(id, function(data) {
@@ -303,7 +323,8 @@ module.exports = function(app, passport) {
     app.get('/guest/view/:id', function(req, res) {
 
         var id = req.params.id;
-        console.log(req.params.id + " req.user.id )))")
+        console.log(req.params.id + " req.params.id )))")
+         console.log(req.user + " req.user )))")
 
 
         postModel.getOneBlogJoin(id, function(data) {

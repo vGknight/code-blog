@@ -53,8 +53,6 @@ $(function() {
         console.log(newContactReq);
          $('#confirm-modal').modal('show');
 
-         // $("#contact-form").trigger("reset");
-
         // Send the POST request.
         $.ajax("/api/send-contact-email", {
             type: "POST",
@@ -115,24 +113,7 @@ $(function() {
 
             }
         );
-        // var id = $(this).data("id");
 
-        // var devoured = {
-        //     devoured: 1
-        // };
-
-        // // Send the PUT request.
-        // $.ajax("/api/update/" + id, {
-        //     type: "PUT",
-        //     data: devoured
-        // }).then(
-        //     function() {
-        //         console.log("Burger is now eaten!", devoured);
-        //         // Reload the page to get the updated list
-        //         location.reload();
-
-        //     }
-        // );
     });
     // });
 

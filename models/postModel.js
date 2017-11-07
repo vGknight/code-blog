@@ -26,7 +26,7 @@ var postModel = {
 
 
     // need getAllBlogsJoin
-      getAllBlogJoin: function(cb) {
+    getAllBlogJoin: function(cb) {
 
         orm.getAllBlogJoin(function(result) {
 
@@ -35,7 +35,7 @@ var postModel = {
         });
     },
 
-      getMyBlogs: function(id, cb) {
+    getMyBlogs: function(id, cb) {
 
         orm.getMyBlogs(id, function(result) {
 
@@ -45,7 +45,7 @@ var postModel = {
         });
     },
 
-       getMyBlogsJoin: function(id, cb) {
+    getMyBlogsJoin: function(id, cb) {
 
         orm.getMyBlogsJoin(id, function(result) {
 
@@ -55,7 +55,7 @@ var postModel = {
         });
     },
 
-      getOneBlog: function(id, cb) {
+    getOneBlog: function(id, cb) {
 
         orm.getOneBlog(id, function(result) {
 
@@ -65,7 +65,7 @@ var postModel = {
         });
     },
 
-        getOneBlogJoin: function(id, cb) {
+    getOneBlogJoin: function(id, cb) {
 
         orm.getOneBlogJoin(id, function(result) {
 
@@ -74,7 +74,7 @@ var postModel = {
 
         });
     },
-//update
+    //update
     // insertOne: function(name, devoured, cb) {
     //     orm.insertOne("post", name, devoured, function(result) {
 
@@ -93,9 +93,9 @@ var postModel = {
             cb(result);
         })
     },
-//update
-    updateOne: function(item_id, devoured, cb) {
-        orm.updateOne("post", item_id, devoured, function(result) {
+    //update
+    updateOne: function(content, postID, cb) {
+        orm.updateOne(content, postID, function(result) {
 
             cb(result);
 
@@ -103,6 +103,15 @@ var postModel = {
 
 
 
+    },
+
+    deleteOne: function(postID, authorId, cb) {
+        orm.deleteOne(postID, authorId, function(result) {
+            
+            cb(result);
+
+
+        })
     }
 
 }

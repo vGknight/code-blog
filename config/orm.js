@@ -55,9 +55,9 @@ var orm = {
 
 
     },
-        getMyBlogsJoin: function(authorId, cb) {
+    getMyBlogsJoin: function(authorId, cb) {
 
-        var queryString = "SELECT blog_db.post.id, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId ,blog_db.user.username, blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id HAVING ?";
+        var queryString = "SELECT blog_db.post.id AS postID, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId ,blog_db.user.username, blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id HAVING ?";
 
         cnx.query(queryString, [
             //where statement
@@ -118,7 +118,7 @@ var orm = {
 
     },
 
-     // returns all vblog posts and user information
+    // returns all vblog posts and user information
     getAllBlogJoin: function(cb) {
 
         var queryString = "SELECT blog_db.post.id AS postID, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId, blog_db.user.id, blog_db.user.username ,blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id";
@@ -128,19 +128,20 @@ var orm = {
         // var blogPostId = 'blog_db.post.id'
 
         cnx.query(queryString
-        //     , [
-        //     //where statement
-        //     { 'post.id': postId }
-        // ]
-        , function(err, result) {
-            if (err) {
-                throw err;
-            }
-            console.log(result);
+            //     , [
+            //     //where statement
+            //     { 'post.id': postId }
+            // ]
+            ,
+            function(err, result) {
+                if (err) {
+                    throw err;
+                }
+                console.log(result);
 
-            cb(result);
+                cb(result);
 
-        });
+            });
 
 
     },
@@ -199,7 +200,7 @@ var orm = {
 
     //Get comments for post
 
-      getComments: function(postId, cb) {
+    getComments: function(postId, cb) {
 
         var queryString = "SELECT id, comment, createTime, update_time, authorId FROM blog_db.comment WHERE ?";
 
@@ -218,19 +219,19 @@ var orm = {
 
 
     },
-  
-// add comment to post
+
+    // add comment to post
     addComment: function(comment, createTime, authorId, postId, cb) {
         // addComment: function(comment, createTime, postId, cb) {
 
         var queryString = "INSERT INTO blog_db.comment SET ?";
 
         var newComment = {
-            
+
             comment: comment,
             createTime: createTime,
             authorId: authorId, // add back
-            postId: postId            
+            postId: postId
         };
 
         console.log(queryString);
@@ -247,13 +248,34 @@ var orm = {
 
     },
 
-    updateOne: function(table, item_id, devoured, cb) {
 
-        var queryString = "UPDATE " + table + " SET ? WHERE ?";
+    deleteOne: function(postId, authorId, cb) {
 
-        cnx.query(queryString, [{ devoured: devoured, },
+        var queryString = "DELETE FROM blog_db.post WHERE ? AND ?";
+
+        cnx.query(queryString, [{ id: postId },
+                //and prevent other loggedin users from deleting my posts
+                { authorId: authorId }
+            ],
+
+            function(error, results) {
+                if (error) throw error;
+                cb(results);
+
+            })
+
+
+    },
+
+    //update blog post
+
+    updateOne: function(content, postID, cb) {
+
+        var queryString = "UPDATE blog_db.post SET ? WHERE ?";
+
+        cnx.query(queryString, [{ content: content, },
                 //WHERE Clause
-                { id: item_id }
+                { id: postID }
             ],
 
             function(error, results) {
@@ -263,7 +285,10 @@ var orm = {
             });
 
 
-    }
+    },
+
+
+
 
 
 }
