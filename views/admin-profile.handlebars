@@ -27,21 +27,24 @@
     <div class="col-6 text-center">
 
     </div>
-    {{#each post}}
+    {{#each bloggers}}
     <div class="pages">
         <div class="blog">
             <div class="blog-post" id="{{this.postID}}">
                 <h2 class="blog-post-title">{{this.title}}</h2>
                 <p class="blog-post-meta">Written by: {{this.username}} Date Published: {{formatDt this.createTime}}</a></p>
                 <!-- <p class="blog-post-meta">{{formatDt this.createTime}}<a href="#">{{this.username}}</a><a href="/edit/post/>{{this.POSTID}}"</a></p> -->
-                {{this.content}}
-                 <!-- <button class="btn btn-outline-dark" type="submit">View Post<i class="fa fa-plus" aria-hidden="true"></i></button> -->
+                <!-- {{this.content}} -->
+                <p>Status: {{this.status}}</p>
+                <p>Username: {{this.username}}</p>
+                <p>Email : {{this.email}}</p>
+                 <button class="btn btn-outline-dark" type="submit">Activate<i class="fa fa-plus" aria-hidden="true"></i></button>
                  <!-- <button class="btn btn-outline-dark" type="submit">Edit Post<i class="fa fa-plus" aria-hidden="true"></i></button> -->
                  <!-- <button class="btn btn-outline-dark" type="submit">Delete Post<i class="fa fa-plus" aria-hidden="true"></i></button> -->
                  <!-- <h3><a href="/view/{{this.postID}}">{{this.title}}</a></h3> -->
                  
                  <!-- <p><a href="/view/{{this.postID}}">View This Post</a></p> -->
-                 <p><a href="/api/post/delete/{{this.postID}}">Delete This Post</a></p>
+                 <!-- <p><a href="/api/post/delete/{{this.postID}}">Delete This Post</a></p> -->
 
 
             </div>

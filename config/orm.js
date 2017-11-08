@@ -38,6 +38,24 @@ var orm = {
 
     },
 
+    // admin functions
+
+     getAuthors: function(cb) {
+
+        var queryString = "SELECT id, username, email, fName, lName, superUser, status FROM blog_db.user";
+
+        cnx.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+
+            cb(result);
+
+        });
+
+
+    },
+
     //use this to dynamically populate featured blog drop down
 
     getAllBlogers: function(cb) {
@@ -291,7 +309,13 @@ var orm = {
 
 
 
+
+
 }
 
 
 module.exports = orm;
+
+
+
+   

@@ -6,6 +6,7 @@ var dbconfig = require('../config/database');
 var connection = mysql.createConnection(dbconfig.connection);
 var orm = require("../config/orm.js");
 var postModel = require("../models/postModel.js");
+var userModel = require("../models/userModel.js");
 var commentsModel = require("../models/commentsModel.js");
 var nodeMailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
@@ -61,7 +62,7 @@ module.exports = function(app, passport) {
         let transporter = nodeMailer.createTransport(sgTransport(mailer.smtpCfg));
         let mailOptions = mailer.contactMail;
         mailOptions.text = "Name: " + req.body.name + "\nEmail : " + req.body.email + "\nGithub: " + req.body.github + "\nComments: " + req.body.comments;
-        // let mailer.smtp = req.body.body;
+        // mailOptions.html = "<p> Name: " + req.body.name + "\nEmail : " + req.body.email + "\nGithub: " + req.body.github + "\nComments: " + req.body.comments; + "</p>";// let mailer.smtp = req.body.body;
 
         console.log(mailOptions);
 
@@ -108,7 +109,7 @@ module.exports = function(app, passport) {
 
     });
 
-    // process the login form
+    // process the login form for regular users
     app.post('/login', passport.authenticate('local-login', {
             successRedirect: '/profile', // redirect to the secure profile section
             failureRedirect: '/login', // redirect back to the signup page if there is an error
@@ -128,6 +129,53 @@ module.exports = function(app, passport) {
     // =====================================
     // LOGIN ===============================
     // =====================================
+    // admin login
+    // process the login form for admin users
+    app.post('/admin/login', passport.authenticate('local-admin', {
+            successRedirect: '/admin/profile', // redirect to the secure profile section
+            failureRedirect: '/admin/login', // redirect back to the signup page if there is an error
+            failureFlash: true // allow flash messages
+        }),
+        function(req, res) {
+            console.log("hello");
+
+            if (req.body.remember) {
+                req.session.cookie.maxAge = 1000 * 60 * 3;
+            } else {
+                req.session.cookie.expires = false;
+            }
+            res.redirect('/');
+        });
+
+        // show the login form
+    app.get('/admin/login', function(req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.render('admin-login.handlebars', { message: req.flash('loginMessage') });
+
+    });
+
+        app.get('/admin/profile', isLoggedIn, function(req, res) {
+
+        // postModel.getMyBlogs(req.user.id, function(data) {
+        userModel.getAuthors(function(data) {
+
+            var hbsObject = {
+                bloggers: data,
+                user: req.user
+                // user: req.user
+            };
+            // console.log(hbsObject);
+            console.log(req.user.id + " req.user.id )))")
+
+            res.render("admin-profile.handlebars", hbsObject);
+
+
+        });
+    });
+
+
+
 
 
     // about page
@@ -463,6 +511,7 @@ module.exports = function(app, passport) {
 // route middleware to make sure
 function isLoggedIn(req, res, next) {
 
+console.log(req);
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
 
@@ -481,6 +530,7 @@ function isLoggedIn2(req, res, next) {
 
         // authenticated = true;
         // this.myVar = myVar;
+        
 
 
         return next();

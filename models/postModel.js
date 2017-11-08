@@ -24,6 +24,17 @@ var postModel = {
         });
     },
 
+    //  getAuthors: function(cb) {
+
+    //     orm.getAuthors(function(result) {
+
+    //         cb(result);
+
+    //     });
+    // },
+
+    
+
 
     // need getAllBlogsJoin
     getAllBlogJoin: function(cb) {
