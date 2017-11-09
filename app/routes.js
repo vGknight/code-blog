@@ -55,6 +55,11 @@ module.exports = function(app, passport) {
         });
     });
 
+    //image upload
+    
+
+
+
     // Contact form email
 
     app.post('/api/send-contact-email', function(req, res) {
