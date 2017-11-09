@@ -1,7 +1,6 @@
 <div class="container">
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span>Welcome {{user.fName}}</h1>
-        <!-- <a href="/logout" class="btn btn-default btn-sm">Logout</a> -->
     </div>
     <div class="row">
         <!-- LOCAL INFORMATION -->
@@ -13,7 +12,6 @@
                     <br>
                     <strong>username</strong>: {{user.username }}
                     <br>
-                    <!-- <strong>password</strong>: {{user.password }} -->
                     <strong>Name</strong>: {{user.fName }} {{user.lName}}
                     <br>
                     <strong>Email</strong>: {{user.email}}
@@ -23,27 +21,15 @@
         </div>
     </div>
     <!-- blogs dump here -->
-    <!-- new blob -->
     <div class="col-6 text-center">
-
     </div>
     {{#each post}}
     <div class="pages">
         <div class="blog">
             <div class="blog-post" id="{{this.postID}}">
                 <h2 class="blog-post-title">{{this.title}}</h2>
-                <h4 class="blog-post-meta">Written by: {{this.username}} Date Published: {{formatDt this.createTime}}</a></h4>
-                <!-- <p class="blog-post-meta">{{formatDt this.createTime}}<a href="#">{{this.username}}</a><a href="/edit/post/>{{this.POSTID}}"</a></p> -->
-                {{this.content}}
-                 <!-- <button class="btn btn-outline-dark" type="submit">View Post<i class="fa fa-plus" aria-hidden="true"></i></button> -->
-                 <!-- <button class="btn btn-outline-dark" type="submit">Edit Post<i class="fa fa-plus" aria-hidden="true"></i></button> -->
-                 <!-- <button class="btn btn-outline-dark" type="submit">Delete Post<i class="fa fa-plus" aria-hidden="true"></i></button> -->
-                 <!-- <h3><a href="/view/{{this.postID}}">{{this.title}}</a></h3> -->
-                 
-                 <!-- <p><a href="/view/{{this.postID}}">View This Post</a></p> -->
-                 <p><a href="/api/post/delete/{{this.postID}}">Delete This Post</a></p>
-
-
+                <h4 class="blog-post-meta">Written by: {{this.username}} Date Published: {{formatDt this.createTime}}</a></h4> {{this.content}}
+                <p><a href="/api/post/delete/{{this.postID}}">Delete This Post</a></p>
             </div>
         </div>
     </div>
@@ -58,9 +44,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                      <form class="create-form" id="myForm">
+                    <form class="create-form" id="myForm">
                         <div class="form-group">
-                            <!-- <label for="blog-title">Title:</label> -->
                             <input type="text" class="form-control" required="true" id="blog-title" placeholder="Title of your blog">
                         </div>
                         <div class="form-group">
@@ -69,20 +54,15 @@
                                 <i class="fa fa-plus" aria-hidden="true"></i></button>
                         </div>
                     </form>
-                     <form id="frmUploader" enctype="multipart/form-data" action="api/Upload/" method="post">
-        <input type="file" name="imgUploader" multiple />
-        <input type="submit" name="submit" id="btnSubmit" value="Upload" />
-    </form>
+                    <form id="frmUploader" enctype="multipart/form-data" action="api/Upload/" method="post">
+                        <input type="file" name="imgUploader" multiple />
+                        <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+                    </form>
                 </div>
-               
                 <div class="modal-footer">
-          
                 </div>
             </div>
         </div>
     </div>
-
     <!-- edit modal -->
-
-
 </div>

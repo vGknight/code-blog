@@ -1,13 +1,7 @@
-<!-- <body> -->
-<!-- banner-body -->
-<!-- header -->
-<!-- header-bottom -->
 <div class="header-bottom">
     <div class="header-bottom-top">
         <ul>
             <li>
-                <!-- <a href="#" class="g">  -->
-                <!-- </a> -->
             </li>
             <li>
                 <!-- <a href="#" class="p"> </a> --></li>
@@ -156,31 +150,17 @@
         </script>
         <script type="text/javascript" src="js/jquery.flexisel.js"></script>
     </div>
-    <!-- //banner-bottom -->
-    <!-- blog -->
-
-     <!-- test -->
-             
-       
-
-              
-
     <div class="blog">
-
         {{#each post}}
         <div class="blog-left-grid">
             <div class="blog-left-grid-left blog-post" id="{{this.postID}}">
                 <h2><a href="/view/{{this.postID}}">{{this.title}}</a></h2>
-                <!-- <p>by <span>Arushi, Jessica, Greg</span> | October 29,2017 | <span>Coding Bootcamp</span></p> -->
                 <h4>by <span>{{this.username}}</span> | {{formatDt this.createTime}} | <span>Coding Bootcamp</span></h4>
-
             </div>
             <div class="blog-left-grid-right">
-                <!-- <a href="#" class="hvr-bounce-to-bottom non">20 Comments</a> -->
             </div>
             <div class="clearfix"> </div>
             <a><img src="images/4.jpg" alt=" " class="img-responsive"></a>
-            <!-- <a href="single.html"><img src="images/4.jpg" alt=" " class="img-responsive"></a> -->
             <p class="para"> {{this.content}} </p>
             <div class="rd-mre">
                 <a href="/view/{{this.postID}}" class="hvr-bounce-to-bottom quod">Read More</a>
@@ -192,14 +172,10 @@
 </div>
 <div class="clearfix"> </div>
 </div>
-<!-- //blog -->
 </div>
 <div class="footer">
     <div class="container">
         <div class="footer-grids">
             <div class="clearfix"> </div>
-        </div>
-        <!-- for bootstrap working -->
-        <script src="js/bootstrap.js">
-        </script>
-        <!-- </body>
+            <script src="js/bootstrap.js">
+            </script>

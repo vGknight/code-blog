@@ -40,7 +40,7 @@ var orm = {
 
     // admin functions
 
-     getAuthors: function(cb) {
+    getAuthors: function(cb) {
 
         var queryString = "SELECT id, username, email, fName, lName, superUser, status FROM blog_db.user";
 
@@ -103,8 +103,6 @@ var orm = {
             if (err) {
                 throw err;
             }
-            console.log(result);
-
             cb(result);
 
         });
@@ -116,9 +114,6 @@ var orm = {
 
         var queryString = "SELECT blog_db.post.id AS postID, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId, blog_db.user.username, blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id HAVING ?"
 
-        // var queryString = "SELECT id, title, content, tags, status, createTime, updateTime, authorId FROM blog_db.post WHERE ?";
-
-        // var blogPostId = 'blog_db.post.id'
 
         cnx.query(queryString, [
             //where statement
@@ -127,7 +122,6 @@ var orm = {
             if (err) {
                 throw err;
             }
-            // console.log("==============" + result);
 
             cb(result);
 
@@ -139,24 +133,17 @@ var orm = {
     // returns all vblog posts and user information
     getAllBlogJoin: function(cb) {
 
-        var queryString = "SELECT blog_db.post.id AS postID, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId, blog_db.user.id, blog_db.user.username ,blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id ORDER by blog_db.post.createTime DESC Limit 3";
+        var queryString = "SELECT blog_db.post.id AS postID, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId, blog_db.user.id, blog_db.user.username ,blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id ORDER by blog_db.post.createTime DESC Limit 4";
 
-        // var queryString = "SELECT id, title, content, tags, status, createTime, updateTime, authorId FROM blog_db.post WHERE ?";
 
-        // var blogPostId = 'blog_db.post.id'
 
         cnx.query(queryString
-            //     , [
-            //     //where statement
-            //     { 'post.id': postId }
-            // ]
+
             ,
             function(err, result) {
                 if (err) {
                     throw err;
                 }
-                console.log(result);
-
                 cb(result);
 
             });
@@ -202,9 +189,6 @@ var orm = {
             authorId: authorId
         };
 
-        console.log(queryString);
-        console.log(newBlogPost);
-
         cnx.query(queryString, newBlogPost, function(err, result) {
 
             if (err) {
@@ -229,8 +213,6 @@ var orm = {
             if (err) {
                 throw err;
             }
-            console.log(result);
-
             cb(result);
 
         });
@@ -240,10 +222,8 @@ var orm = {
 
     // add comment to post
     addComment: function(comment, createTime, authorId, postId, cb) {
-        // addComment: function(comment, createTime, postId, cb) {
 
         var queryString = "INSERT INTO blog_db.comment SET ?";
-
         var newComment = {
 
             comment: comment,
@@ -251,9 +231,6 @@ var orm = {
             authorId: authorId, // add back
             postId: postId
         };
-
-        console.log(queryString);
-        console.log(newComment);
 
         cnx.query(queryString, newComment, function(err, result) {
 
@@ -315,7 +292,3 @@ var orm = {
 
 
 module.exports = orm;
-
-
-
-   

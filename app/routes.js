@@ -56,7 +56,7 @@ module.exports = function(app, passport) {
     });
 
     //image upload
-    
+
 
 
 
@@ -69,7 +69,6 @@ module.exports = function(app, passport) {
         mailOptions.text = "Name: " + req.body.name + "\nEmail : " + req.body.email + "\nGithub: " + req.body.github + "\nComments: " + req.body.comments;
         // mailOptions.html = "<p> Name: " + req.body.name + "\nEmail : " + req.body.email + "\nGithub: " + req.body.github + "\nComments: " + req.body.comments; + "</p>";// let mailer.smtp = req.body.body;
 
-        console.log(mailOptions);
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
@@ -121,7 +120,7 @@ module.exports = function(app, passport) {
             failureFlash: true // allow flash messages
         }),
         function(req, res) {
-            console.log("hello");
+
 
             if (req.body.remember) {
                 req.session.cookie.maxAge = 1000 * 60 * 3;
@@ -142,7 +141,6 @@ module.exports = function(app, passport) {
             failureFlash: true // allow flash messages
         }),
         function(req, res) {
-            console.log("hello");
 
             if (req.body.remember) {
                 req.session.cookie.maxAge = 1000 * 60 * 3;
@@ -152,7 +150,7 @@ module.exports = function(app, passport) {
             res.redirect('/');
         });
 
-        // show the login form
+    // show the login form
     app.get('/admin/login', function(req, res) {
 
         // render the page and pass in any flash data if it exists
@@ -160,18 +158,16 @@ module.exports = function(app, passport) {
 
     });
 
-        app.get('/admin/profile', isLoggedIn, function(req, res) {
+    app.get('/admin/profile', isLoggedIn, function(req, res) {
 
-        // postModel.getMyBlogs(req.user.id, function(data) {
         userModel.getAuthors(function(data) {
 
             var hbsObject = {
                 bloggers: data,
                 user: req.user
-                // user: req.user
+
             };
-            // console.log(hbsObject);
-            console.log(req.user.id + " req.user.id )))")
+
 
             res.render("admin-profile.handlebars", hbsObject);
 
@@ -191,11 +187,10 @@ module.exports = function(app, passport) {
 
             var hbsObject = {
                 authors: data
-                
+
 
             };
 
-            console.log(hbsObject)
 
             res.render('contact.handlebars', hbsObject);
         });
@@ -210,11 +205,9 @@ module.exports = function(app, passport) {
 
             var hbsObject = {
                 authors: data
-                
+
 
             };
-
-            console.log(hbsObject)
 
             res.render('about.handlebars', hbsObject);
         });
@@ -259,8 +252,6 @@ module.exports = function(app, passport) {
                 user: req.user
                 // user: req.user
             };
-            // console.log(hbsObject);
-            console.log(req.user.id + " req.user.id )))")
 
             res.render("profile.handlebars", hbsObject);
 
@@ -293,8 +284,6 @@ module.exports = function(app, passport) {
         var createTime = req.body.createTime;
         var authorId = req.user.id;
 
-        console.log(authorId + " this is the authorid")
-        console.log(content + " this is the content")
 
         postModel.addBlogPost(title, content, tags, status, createTime, authorId, function() {
 
@@ -306,8 +295,8 @@ module.exports = function(app, passport) {
 
     //get this working
 
-      //need to call this from ajax and not link on html
-         app.get('/api/post/delete/:id', isLoggedIn, function(req, res) {
+    //need to call this from ajax and not link on html
+    app.get('/api/post/delete/:id', isLoggedIn, function(req, res) {
 
 
         var postId = req.params.id;
@@ -323,37 +312,32 @@ module.exports = function(app, passport) {
     });
 
     //add comment
-    // app.post('/api/post/:id', isLoggedIn, function(req, res) {
-    app.post('/api/comment/', function(req, res) {
+
+    // app.post('/api/comment/', function(req, res) {
 
 
-        var comment = req.body.comment;
-        var createTime = req.body.createTime;
-        var postId = req.body.postId;
-        var authorId = req.user.id;
+    //     var comment = req.body.comment;
+    //     var createTime = req.body.createTime;
+    //     var postId = req.body.postId;
+    //     var authorId = req.user.id;
 
-        console.log(authorId + " this is the authorid")
-        console.log(comment + " this is the content")
+    //     console.log(authorId +  this is the authorid")
+    //     console.log(comment + " this is the content")
 
-        commentsModel.addComment(comment, createTime, authorId, postId, function() {
-            // commentsModel.addComment(comment, createTime, postId, function() {
+    //     commentsModel.addComment(comment, createTime, authorId, postId, function() {
+    //         // commentsModel.addComment(comment, createTime, postId, function() {
 
 
-            res.redirect('/profile'); // redirect back to post if possible
-        });
+    //         res.redirect('/profile'); // redirect back to post if possible
+    //     });
 
-    });
+    // });
 
     //single blog page
-    // authenticated user gets to leave comments
+
     app.get('/view/:id', isLoggedIn2, function(req, res) {
-        // app.get('/view/:id', function(req, res) {
 
         var id = req.params.id;
-        console.log(req.params.id + " req.params.id )))")
-        console.log(req.user.id + " req.user )))")
-
-
         postModel.getOneBlogJoin(id, function(data) {
 
 
@@ -363,8 +347,6 @@ module.exports = function(app, passport) {
 
             };
 
-            console.log(req.params.id + " req.user.id )))")
-
             res.render("single.handlebars", hbsObject);
 
         });
@@ -372,21 +354,17 @@ module.exports = function(app, passport) {
 
     //single blog page
     // authenticated user gets to leave comments
-    // app.get('/view/:id', isLoggedIn, function(req, res) {
+
     app.get('/guest/view/:id', function(req, res) {
 
         var id = req.params.id;
-        console.log(req.params.id + " req.params.id )))")
-         console.log(req.user + " req.user )))")
-
-
         postModel.getOneBlogJoin(id, function(data) {
 
             //look into route validator 
 
             if (data.length == 0) {
 
-                console.log(data.length);
+  
                 // res.render("/");
                 return res.status(404).end();
             } else {
@@ -395,7 +373,6 @@ module.exports = function(app, passport) {
                     // user: req.user
                     // authorized: // user: req.user
                 };
-                console.log(data.length);
                 res.render("singleGuest.handlebars", hbsObject);
             }
 
@@ -404,107 +381,6 @@ module.exports = function(app, passport) {
 
         });
     });
-
-
-
-
-
-
-
-
-    //github stuff
-
-    // app.get('/auth/github', passport.authenticate('github', { scope: ['user:username'] }));
-
-    // app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-    // app.get('/auth/github/callback',
-    //     passport.authenticate('github', { failureRedirect: '/login' }),
-    //     function(req, res) {
-    //         // Successful authentication, redirect home.
-    //         res.redirect('/profile');
-    //     });
-
-
-    // async testing  DOING THIS TO TRY AND LOAD COMMENTS ON BLOG PAGE FOR HANDLEBARS
-
-    // app.get('/api/test/view/:id', function(req, res) {
-
-    //     var id = req.params.id;
-
-
-    //     async.parallel([
-    //         // getBlogPost: 
-    //         function(callback) {
-    //             postModel.getOneBlog(id, function(data) {
-
-    //                 var hbsObject = {
-    //                     blog: data,
-    //                     user: req.user
-    //                     // authorized: // user: req.user
-    //                 };
-
-    //                 return callback;
-
-    //             });
-
-
-    //         },
-    //         // getBlogComments: 
-    //         function(callback) {
-
-    //             commentsModel.getComments(id, function(data) {
-
-    //                 console.log(id + " ---------------------Should be postId--");
-
-    //                 // var hbsObject = {
-    //                 //     blog: data,
-    //                 //     user: req.user
-
-    //                 // };
-
-    //             });
-
-    //         }
-    //     ], function(err, results) {
-    //         if (err)
-    //             return res.send(500);
-    //         // results === { universityData: { ... }, courseData: { ... } }
-    //         // res.render('course', results);
-
-    //         console.log(results[0] + "============================================================");
-    //         res.render("single2.handlebars", results);
-    //     });
-    // });
-
-    // app.get('/api/test/view/:id', function(req, res) {
-
-    //     var id = req.params.id;
-
-
-
-
-    //     commentsModel.getComments(id, function(data) {
-
-    //         console.log(data + " ---------------------Should be postId--");
-
-    //         var hbsObject = {
-    //             blog: data,
-    //             user: req.user
-
-    //         };
-
-    //     });
-
-
-    //     // results === { universityData: { ... }, courseData: { ... } }
-    //     // res.render('course', results);
-
-    //     console.log(hbsObject + "============================================================");
-    //     res.render("single2.handlebars", hbsObject);
-    // });
-    // });
-
 
 
 };
@@ -516,7 +392,7 @@ module.exports = function(app, passport) {
 // route middleware to make sure
 function isLoggedIn(req, res, next) {
 
-console.log(req);
+
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
 
@@ -535,7 +411,7 @@ function isLoggedIn2(req, res, next) {
 
         // authenticated = true;
         // this.myVar = myVar;
-        
+
 
 
         return next();

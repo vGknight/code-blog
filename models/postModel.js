@@ -24,14 +24,6 @@ var postModel = {
         });
     },
 
-    //  getAuthors: function(cb) {
-
-    //     orm.getAuthors(function(result) {
-
-    //         cb(result);
-
-    //     });
-    // },
 
     
 
@@ -51,7 +43,7 @@ var postModel = {
         orm.getMyBlogs(id, function(result) {
 
             cb(result);
-            // console.log(result);
+
 
         });
     },
@@ -61,8 +53,7 @@ var postModel = {
         orm.getMyBlogsJoin(id, function(result) {
 
             cb(result);
-            // console.log(result);
-
+    
         });
     },
 
@@ -71,7 +62,7 @@ var postModel = {
         orm.getOneBlog(id, function(result) {
 
             cb(result);
-            // console.log(result);
+
 
         });
     },
@@ -81,24 +72,15 @@ var postModel = {
         orm.getOneBlogJoin(id, function(result) {
 
             cb(result);
-            // console.log(result);
+
 
         });
     },
-    //update
-    // insertOne: function(name, devoured, cb) {
-    //     orm.insertOne("post", name, devoured, function(result) {
-
-    //         cb(result);
-    //     })
-    // },
-
 
 
     //updated for blog pp
     addBlogPost: function(title, content, tags, status, createTime, authorId, cb) {
 
-        console.log("thisis from the post.js " + authorId);
         orm.addBlogPost(title, content, tags, status, createTime, authorId, function(result) {
 
             cb(result);
