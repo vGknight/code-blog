@@ -60,7 +60,7 @@ var orm = {
 
     getAllBlogers: function(cb) {
 
-        var queryString = "SELECT id AS userId, username, fName, lName, email FROM blog_db.user";
+        var queryString = "SELECT id AS userId, username, fName, lName, email FROM blog_db.user WHERE status = 1 and superUser = 0";
 
         cnx.query(queryString, function(err, result) {
             if (err) {
