@@ -170,9 +170,9 @@
         {{#each post}}
         <div class="blog-left-grid">
             <div class="blog-left-grid-left blog-post" id="{{this.postID}}">
-                <h3><a href="/view/{{this.postID}}">{{this.title}}</a></h3>
+                <h2><a href="/view/{{this.postID}}">{{this.title}}</a></h2>
                 <!-- <p>by <span>Arushi, Jessica, Greg</span> | October 29,2017 | <span>Coding Bootcamp</span></p> -->
-                <p>by <span>{{this.username}}</span> | {{formatDt this.createTime}} | <span>Coding Bootcamp</span></p>
+                <h4>by <span>{{this.username}}</span> | {{formatDt this.createTime}} | <span>Coding Bootcamp</span></h4>
 
             </div>
             <div class="blog-left-grid-right">

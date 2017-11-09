@@ -139,7 +139,7 @@ var orm = {
     // returns all vblog posts and user information
     getAllBlogJoin: function(cb) {
 
-        var queryString = "SELECT blog_db.post.id AS postID, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId, blog_db.user.id, blog_db.user.username ,blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id ORDER by blog_db.post.createTime DESC";
+        var queryString = "SELECT blog_db.post.id AS postID, blog_db.post.title, blog_db.post.content, blog_db.post.createTime, blog_db.post.updateTime, blog_db.post.authorId, blog_db.user.id, blog_db.user.username ,blog_db.user.fName FROM blog_db.post LEFT JOIN blog_db.user ON blog_db.post.authorId = blog_db.user.id ORDER by blog_db.post.createTime DESC Limit 3";
 
         // var queryString = "SELECT id, title, content, tags, status, createTime, updateTime, authorId FROM blog_db.post WHERE ?";
 
