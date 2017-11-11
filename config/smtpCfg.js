@@ -6,7 +6,7 @@ let smtpCfg = {
     host: "smtp.sendgrid.net",
     auth: {
         // api_user: "apikey",
-        api_key: "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"
+        api_key: ""
     }
 };
 
